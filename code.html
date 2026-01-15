@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<body>
+        <div id="message_test">
+                <h2>案内文参照テスト(案内情報取得サブシステムです)</h2>
+                <h3>get_message.py</h3>
+                <a href="../get_message.py?code=129&angle=0">テストデータを参照(Code:129 Angle:0)</a><br/>
+                <form action="get_message.py" method="GET">
+                        <label for="mode">
+                                Mode:
+                                <select id="mode" name="mode">
+                                        <option value="message" selected>案内文(message)</option>
+                                        <option value="reading">読み方(reading)</option>
+                                        <option value="wav">音声ファイル名(wav)</option>
+                                </select>
+                        </label><br>
+                        <label>Code : <input type="text" name="code"></label><br/>
+                        <label>Angle : <input type="text" name="angle"></label><br/>
+                        <label>Category : <input type="text" name="messagecategory"></label><br/>
+                        <label for="language">
+                                Language :
+                                <select id="language" name="language">
+                                        <option value="ja" selected>日本語</option>
+                                        <option value="en">英語</option>
+                                        <option value="ko">韓国語</option>
+                                        <option value="zh">中国語</option>
+                                </select>
+                        </label><br>
+                        <input type="submit" value="上記のメッセージを参照">
+                </form>
+                <p>コードとアングル、ジャンルから案内文を取得できます。案内文以外にも読み方や音声ファイル名も取得できます。</p>
+                <p>◆HTTPリクエストパラメータ[GET]</p>
+                <ul>
+                        <li>mode: 取り出したいカラム</li>
+                        <ul>
+                                <li>message: 案内文を取り出す(default)</li>
+                                <li>reading: 読み方を取り出す（リンク付き案内文の場合に使用）</li>
+                                <li>wav: 案内文に紐づいた音声ファイル名を取り出し</li>
+                        </ul>
+                        <li>code: コード</li>
+                        <li>angle: 読み取り角度</li>
+                        <li>messagecategory: 案内文ジャンル</li>
+                        <ul>
+                                <li>normal: 一般(default)</li>
+                                <li>detail: 詳細</li>
+                                <li>evacuation: 避難</li>
+                                <li>exclusive: 専用</li>
+                        </ul>
+                        <li>language: 言語</li>
+                        <ul>
+                                <li>ja: 日本語(default)</li>
+                                <li>en: 英語</li>
+                                <li>ko: 韓国語</li>
+                                <li>zh: 中国語</li>
+                        </ul>
+                </ul>
+                <p>◆使用例</p>
+                <ul>
+                        <li>
+                                コード129アングル0の案内文(message)<br>
+                                <a href="http://202.13.160.89:50003/tenji/get_message.py?code=129&angle=0">http://202.13.160.89:50003/tenji/get_message.py?code=129&angle=0</a>
+                        </li>
+                        <li>
+                                コード1048579アングル2の読み方(reading)、ジャンル(messagecategory)を省略した場合は一般(normal)で出てきます<br>
+                                <a href="http://202.13.160.89:50003/tenji/get_message.py?mode=reading&code=1048579&angle=2&language=ja">http://202.13.160.89:50003/tenji/get_message.py?mode=reading&code=1048579&angle=2&language=ja</a>
+                        </li>
+                        <li>
+                                コード1049236アングル0のジャンルが専用(exclusive)の音声ファイル名(wav)<br>
+                                <a href="http://202.13.160.89:50003/tenji/get_message.py?mode=wav&code=1049236&angle=0&messagecategory=exclusive&language=ja">http://202.13.160.89:50003/tenji/get_message.py?mode=wav&code=1049236&angle=0&messagecategory=exclusive&language=ja</a>
+                        </li>
+                </ul>
+        </div>
+</body>
+</html>
